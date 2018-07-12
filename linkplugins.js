@@ -1,16 +1,12 @@
-﻿/**
- * Link平台功能接口，使用该模块必须先引入Cordova.js 和 bingotouch.js<br/>包含用户信息获取、通讯录、聊天、签到、应用、服务号等操作接口
- * v 4.1
- * @module 平台接口
- */
-
+﻿
 ;(function (window) {
+
 	/**
 	 * Link平台功能接口，使用该模块必须先引入Cordova.js 和 bingotouch.js<br/>包含用户信息获取、通讯录、聊天、签到、应用、服务号等操作接口
-	 * v 4.1
 	 * @namespace app.link
 	*/
     window.app.link = window.app.link || {};
+
     /**
       * 获取登陆后的用户信息
       * @method app.link.getLoginInfo
@@ -26,6 +22,8 @@
         };
         Cordova.exec(successCallback, null, "LinkPlugin", "getLoginInfo", []);
     }
+
+
     /**
         * 获取登录用户的AccessToken
         * @method app.link.getToken
@@ -41,6 +39,7 @@
         };
         Cordova.exec(successCallback, null, "LinkPlugin", "getToken", []);
     }
+
     /**
       * 获取Link指定的用户(userId)信息
       * @method app.link.getUserInfo
@@ -63,6 +62,7 @@
         };
         Cordova.exec(successCallback, failCallback, "LinkPlugin", "getUserInfo", [userId]);
     }
+
     /**
       * 根据手机或者邮箱获取用户信息
       * @method app.link.getUserInfoByCellphoneOrEmail
@@ -80,6 +80,7 @@
         };
         Cordova.exec(successCallback, null, "LinkPlugin", "getUserInfoByCellphoneOrEmail", [key]);
     }
+
     /**
       * 根据loginId获取userId
       * @method app.link.getUserIdWithLoginId
@@ -96,9 +97,12 @@
     app.link.getUserIdWithLoginId = function (success,fail,loginId) {
         Cordova.exec(success,fail , "LinkPlugin", "getUserIdWithLoginId", [loginId]);
     }
+
     // *
     //  * 包括：获取部门成员数据、对通讯录的选人界面操作等
     //  * @class 通讯录
+
+
     /**
       * 打开通讯录页面
       * @method app.link.openContactPage
@@ -112,6 +116,8 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
+
     /**
      根据部门orgId获取用户信息以及子部门信息
      @method app.link.getChildListByOrgId
@@ -121,6 +127,7 @@
     app.link.getChildListByOrgId=function(callback,orgId){
          Cordova.exec(callback,null , "LinkPlugin", "getChildListByOrgId", [orgId]);
     }
+
     /**
       * 根据部门orgId获取该部门的信息
       * @method app.link.getDeptInfoByOrgId
@@ -130,6 +137,7 @@
     app.link.getDeptInfoByOrgId=function(callback,orgId){
          Cordova.exec(callback,null , "LinkPlugin", "getDeptInfoByOrgId", [orgId]);
     }
+
     /**
       * 调用Link选人页面(单选)
       * @method app.link.startContactSingleSelector
@@ -149,6 +157,7 @@
         }, extraParams);
         Cordova.exec(successCallback, failCallback, "LinkPlugin", "startContactSingleSelector", [title, dataType,extraParams]);
     }
+
     /**
       * 调用Link选人界面(多选)
       * @method app.link.startContactMulitSelector
@@ -190,6 +199,7 @@
         }, extraParams);
         Cordova.exec(successCallback, failCallback, "LinkPlugin", "startContactMulitSelector", [title, dataType, extraParams]);
     }
+
     /**
         调用Link里面用户的名片页面
         @method app.link.startUserCard
@@ -200,6 +210,8 @@
     app.link.startUserCard = function (userId) {
         Cordova.exec(null, null, "LinkPlugin", "startUserCard", [userId]);
     }
+
+
     /**
         打开部门列表
         @method app.link.openOrgList
@@ -215,6 +227,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         查看部门名片页
         @method app.link.openOrgCard
@@ -230,9 +243,12 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     // *
     //  * 包括：创建群组、打开群组列表等操作
     //  * @class 群组
+
+
     /**
         调用Link里面群组的名片页面
         @method app.link.startGroupCard
@@ -243,6 +259,7 @@
     app.link.startGroupCard = function (groupId) {
         Cordova.exec(null, null, "LinkPlugin", "startGroupCard", [groupId]);
     }
+
     /**
       * 创建群组
       * @method app.link.createGroup
@@ -269,6 +286,7 @@
         };
         Cordova.exec(successCallback, failCallback, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开群组列表
         @method app.link.openGroupList
@@ -286,6 +304,7 @@
         }
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开群组发公告页面
         @method app.link.sendGroupNotice
@@ -301,6 +320,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开群组公告列表
         @method app.link.openGroupNoticeList
@@ -316,6 +336,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开群组签到列表
         @method app.link.openGroupCheckInList
@@ -331,9 +352,12 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     // *
     //  * 包括：添加服务号、打开服务号相关界面操作
     //  * @class 服务号
+
+
     /**
         查看服务号名片页
         @method app.link.openServiceAccountCard
@@ -349,6 +373,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         查看已关注服务号列表
         @method app.link.openServiceAccountList
@@ -362,6 +387,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开添加服务号页面
         @method app.link.addServiceAcccount
@@ -375,6 +401,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         发送服务号公告
         @method app.link.sendServiceAccountNotice
@@ -392,9 +419,12 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     // *
     //  * 跟聊天窗口相关的接口
     //  * @class 聊天消息
+
+
     /**
         打开消息中心页面
         @method app.link.openMsgCenter
@@ -409,6 +439,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
       * 获取未读消息总数
       * @method app.link.getUnreadMessageCount
@@ -424,6 +455,7 @@
     app.link.getUnreadMessageCount = function (successCallback, failCallback) {
         Cordova.exec(successCallback, failCallback,"LinkPlugin", "getUnreadMessageCount", []);
     }
+
     /**
       * 获取指定帐号id的未读消息数
       * @method app.link.getUnreadMessageCountById
@@ -440,6 +472,7 @@
         }
         Cordova.exec(callback,null,"LinkPlugin","getUnreadMessageCountById",[talkWithId]);
     }
+
     /**
         调用Link的用户聊天页面
         @method app.link.startUserChat
@@ -451,6 +484,7 @@
     app.link.startUserChat = function (userId, userName) {
         Cordova.exec(null, null, "LinkPlugin", "startUserChat", [userId, userName]);
     }
+
     /**
         调用Link的群组聊天页面
         @method app.link.startGroupChat
@@ -463,6 +497,7 @@
     app.link.startGroupChat = function (groupId, groupName) {
         Cordova.exec(null, null, "LinkPlugin", "startGroupChat", [groupId, groupName]);
     }
+
     /**
         打开服务号聊天界面
         @method app.link.startServiceAccountChat
@@ -473,6 +508,7 @@
     app.link.startServiceAccountChat = function (accountId) {
         Cordova.exec(null, null, "LinkPlugin", "startServiceAccountChat", [accountId]);
     }
+
     /**
         发送邀约消息（主要用在消息窗口，待补充）
         @method app.link.sendInviteMessage
@@ -485,9 +521,13 @@
         params=params||{};
         Cordova.exec(null, null, "LinkPlugin", "sendInviteMessage", [params]);
     }
+
+
     // *
     //  * 包括：发表动态，打开群组，个人，工作等动态详情界面
     //  * @class 动态
+
+
     /**
       * 发表动态
       * @method app.link.publishMicroblog
@@ -516,6 +556,7 @@
         },options);
         Cordova.exec(successCallback, failCallback, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开动态主页
         @method app.link.openMicroblogPage
@@ -532,6 +573,7 @@
             app.link.openMicroblogPage(0);
     */
     app.link.openMicroblogPage=function(displayType){
+
         displayType = ( displayType >=0 && displayType <= 7 ) ? displayType : 0;
         var params={
             code:"OpenBuiltIn",
@@ -540,6 +582,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开某人动态主页
         @method app.link.openUserMicroblog
@@ -555,6 +598,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
          打开某群组动态主页
         @method app.link.openGroupMicroblog
@@ -570,6 +614,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开某项目动态主页
         @method app.link.startProjectDetail
@@ -580,6 +625,7 @@
     app.link.startProjectDetail = function (projectId) {
         Cordova.exec(null,null, "LinkPlugin", "startProjectDetail", [projectId]);
     }
+
     /**
         打开某服务号动态主页
         @method app.link.openServiceAccountMicroblog
@@ -595,6 +641,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开某话题动态主页
         @method app.link.openTopicMicroblog
@@ -610,6 +657,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开动态广场
         @method app.link.openBlogSquare
@@ -623,6 +671,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开动态详情
         @method app.link.openMicroblogDetail
@@ -638,6 +687,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开我的动态
         @method app.link.openMyMicroblog
@@ -652,9 +702,12 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     // *
     //  * 包括：应用启动、应用市场／中心的相关界面操作
     //  * @class 轻应用
+
+
     /**
       * 启动应用市场App
       * @method app.link.runApp
@@ -683,6 +736,7 @@
        params="[OpenApp]\nappCode="+params.appCode+(params.appUrl?"\nappUrl="+params.appUrl:"")+dataStr;
        Cordova.exec(null, null, "LinkPlugin", "launchLinkService", [params]);
     }
+
     /**
         打开应用桌面
         @method app.link.openAppDesktop
@@ -697,6 +751,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开应用市场
         @method app.link.openAppMarket
@@ -710,6 +765,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开应用详情页面
         @method app.link.openAppCard
@@ -725,9 +781,13 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     // *
     //  * 包括：发起签到、打开签到列表等操作
     //  * @class 签到
+
+
+
     /**
         调用Link的“我要签到”界面
         @method app.link.startCheckIn
@@ -738,6 +798,7 @@
         var params="[StartCheckin]\npushToListOnComplete=false";
         Cordova.exec(null, null, "LinkPlugin", "launchLinkService", [params]);
     }
+
     /**
         调用Link的“签到列表”界面
         @method app.link.openCheckInList
@@ -748,6 +809,7 @@
         var params="[OpenBuiltIn]\nkey=MyCheckIn";
         Cordova.exec(null, null, "LinkPlugin", "launchLinkService", [params]);
     }
+
     /**
         打开签到详情页面
         @method app.link.openCheckInDetail
@@ -763,9 +825,12 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     // *
     //  * 个人相关设置界面调用接口
     //  * @class 设置
+
+
     /**
         打开个人信息修改页面
         @method app.link.openPersonEdit
@@ -779,6 +844,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开个人设置页面
         @method app.link.openSetting
@@ -793,6 +859,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开关于页面
         @method app.link.openAbout
@@ -806,6 +873,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开设置消息通知页面
         @method app.link.openStNotification
@@ -819,6 +887,7 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开设置手势锁屏页面
         @method app.link.openStGestureLock
@@ -832,6 +901,8 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
+
     /**
         打开手势锁屏页面，如果没有设置，会先弹出设置界面，如果有设置，则直接弹出解锁页面
         @method app.link.openCheckGestureLock
@@ -845,6 +916,7 @@
         };
        Cordova.exec(callback, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开设置字体大小页面
         @method app.link.openStFont
@@ -858,6 +930,7 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开设备管理页面
         @method app.link.openStDevice
@@ -871,6 +944,7 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开手工同步页面
         @method app.link.openStSync
@@ -884,6 +958,7 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开清除缓存页面
         @method app.link.openStCleanCache
@@ -897,6 +972,7 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开修改密码页面
         @method app.link.openStModifyPassword
@@ -910,6 +986,7 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开邀请好友页面
         @method app.link.openStInvite
@@ -923,6 +1000,7 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开Link二维码页面
         @method app.link.openStQrcode
@@ -936,6 +1014,7 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         注销Link
         @method app.link.logout
@@ -949,9 +1028,13 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
+
     // *
     //  * 包括：服务同步、自由流、分享、发现服务等界面操作、获取收藏的服务数据、选择网盘文件、小视频、扫一扫等
     //  * @class 其他
+
+
     /**
     执行Link同步服务
     @method app.link.execSyncService
@@ -960,6 +1043,7 @@
     app.link.execSyncService=function(type){
         Cordova.exec(null, null, "LinkPlugin", "execSyncService", [type]);
     }
+
     /**
         打开自由流程页面
         @method app.link.startProcess
@@ -976,6 +1060,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         打开我的工作页面
         @method app.link.openProcessMywork
@@ -989,6 +1074,7 @@
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
         更新Link底部tab角标的数字
         @method app.link.updateTabBadge
@@ -999,6 +1085,7 @@
     app.link.updateTabBadge = function (badgeValue) {
         Cordova.exec(null,null,"LinkPlugin", "updateTabBadge", [badgeValue]);
     }
+
     /**
       * 获取当前Link的主题颜色值
       * @method app.link.getThemeColor
@@ -1009,12 +1096,14 @@
       * });
     */
     app.link.getThemeColor = function (successCallback) {
+
         var callback = function (result) {
             result.background_color = "#" + result.background_color.substring(3);
             successCallback(result); //"#ff0072c6"
         }
         Cordova.exec(callback,null, "LinkPlugin", "getThemeColor", []);
     }
+
     /**
         启动link里面的服务(待补充)
         @method app.link.launchLinkService
@@ -1023,6 +1112,8 @@
     app.link.launchLinkService = function (serviceParam) {
         Cordova.exec(null, null, "LinkPlugin", "launchLinkService", [serviceParam]);
     }
+
+
     /**
       * 注册系统消息监听<br/>注册完成后在页面声明 function nativeCallback(key, param) 就能够监听到消息了。param里面返回  accountType和 accountInstanceId
       * @method app.link.registerReceiver
@@ -1031,6 +1122,7 @@
     app.link.registerReceiver=function(key){
         Cordova.exec(null,null,"NativeBroadCast","registerReceiver",[key]);
     }
+
     /**
       * 外部内容分享到Link里面(待补充)
       * @method app.link.share
@@ -1048,6 +1140,7 @@
         params.icon=params.icon||"";
         Cordova.exec(success, fail, "LinkPlugin", "share", [params]);
     }
+
     /**
       * 分享到聊天界面(个人/群组)
       * @method app.link.shareToMessage
@@ -1065,6 +1158,7 @@
         params.icon=params.icon||"";
         Cordova.exec(success, fail, "LinkPlugin", "shareToMessage", [params]);
     }
+
     /**
       * 分享到动态
       * @method app.link.shareToBlog
@@ -1082,6 +1176,7 @@
         params.icon=params.icon||"";
         Cordova.exec(success, fail, "LinkPlugin", "shareToBlog", [params]);
     }
+
     /**
       * 打开小视频
       * @method app.link.openVideoRecord
@@ -1093,6 +1188,7 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
     打开发现服务
     @method app.link.openDiscoveryService
@@ -1101,9 +1197,11 @@
          var params={
            code:"OpenBuiltIn",
            key:"DcService"
+
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
       * 打开扫一扫
       * @method app.link.scanCode
@@ -1115,6 +1213,7 @@
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
     打开Link内置浏览器
     @method app.link.openLinkBroswer
@@ -1128,6 +1227,7 @@
          };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
     /**
     打开BT容器(轻应用容器)
     @method app.link.openBtBroswer
@@ -1137,6 +1237,8 @@
         var params="[BingoTouch]\nurl="+url;
         Cordova.exec(null, null, "LinkPlugin", "launchLinkService", [params]);
     }
+
+
     /**
     打开pdf文件：url支持本地以及远程的地址
     @method app.link.openPdfBroswer
@@ -1153,6 +1255,7 @@
             app.link.openLinkBroswer(title,url);
         }
     }
+
     /**
     获取本地收藏的服务数据
     @method app.link.getFavoriteService
@@ -1165,6 +1268,7 @@
        };
        Cordova.exec(callback, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
+
      /**
         选择文件
         @method app.link.chooseFile
@@ -1177,6 +1281,7 @@
     app.link.chooseFile = function (callback) {
         Cordova.exec(callback,null, "LinkPlugin", "chooseFile", []);
     }
+
     /**
      * 发起选择图片
      * @method app.link.imagePicker
@@ -1188,6 +1293,8 @@
         var type = 1;
         Cordova.exec(success,fail,"LinkPlugin","selectResourceFiles",[type,pathArr]);
     }
+
+
     /**
      * 压缩图片
      * @method app.link.compressImage
@@ -1199,6 +1306,7 @@
     app.link.compressImage = function(quality,pathArr,success,fail){
         Cordova.exec(success,fail,"LinkPlugin","compressImage",[quality,pathArr]);
     }
+
     /**
      * 获取语言
      * @method app.link.getLanguage
@@ -1208,38 +1316,83 @@
         Cordova.exec(success,fail,"LinkPlugin","getLanguage",[]);
     }
 
+
     /**
-    * 无UI录音插件
-    */
-    app.link.audioRecorder = {};
- 
-    /**
-    * 录音,开始
-    * @param duration 录音持续的时间，单位s；默认值为30;
-    */
-    app.link.audioRecorder.start = function (successCallback, errorCallback, duration) {
-        var param_duration = 30;
-        if (duration) {
-            param_duration = duration;
-        }
-        cordova.exec(successCallback, errorCallback, "AudioRecorderAPI", "record", duration ? [duration] : []);
-    };
- 
-    /**
-    * 录音,停止
+     * 打开云盘
+     * @method app.link.openDisk
      */
-    app.link.audioRecorder.stop = function (successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "AudioRecorderAPI", "stop", []);
-    };
- 
+    app.link.openDisk = function(){
+       var params={
+           code:"OpenBuiltIn",
+           key:"StartNewDisk",
+           naviStyle:3
+       };
+       Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
+    }
+
     /**
-    * 录音,回放
-    * @param audioPath 音频路径；不传递该参数时，回放之前录音
-    */
-    app.link.audioRecorder.playback = function (successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "AudioRecorderAPI", "playback", []);
-    };
-    
+     * 打开语音助手
+     * @method app.link.openSpeechAssistant
+     */
+    app.link.openSpeechAssistant = function(){
+       var params={
+           code:"OpenBuiltIn",
+           key:"SpeechAssistant"
+       };
+       Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
+    }
+
+
+    /**
+     * 发起聊天
+     * @method app.link.startChat
+     */
+    app.link.startChat = function(){
+       var params={
+           code:"StartChat"
+       };
+       Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
+    }
+
+    /**
+     * 打开待办待阅
+     * @method app.link.openTodo
+     * @param {object} options
+     * @param {int} options.defaultIndex 0(待办)/1（待阅）/2（已办）
+     */
+    app.link.openTodo = function(options){
+       var params={
+           code:"UnityTodo",
+           defaultIndex : options.defaultIndex
+       };
+       Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
+    }
+
+
+    /**
+     * 打开邮箱
+     * @method app.link.startEmail
+     */
+    app.link.startEmail = function(){
+       var params={
+           code:"OpenBuiltIn",
+           key:"StartEmail"
+       };
+       Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
+    }
+
+    /**
+     * 打开在线客服
+     * @method app.link.openOnlineServicer
+     */
+    app.link.openOnlineServicer = function(){
+       var params={
+           code:"OpenBuiltIn",
+           key:"openOnlineServicer"
+       };
+       Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
+    }
+
 
 })(window);
 

@@ -1,15 +1,19 @@
 ;(function(window) {
+
     /**
       * 基础功能接口，使用该模块必须先引入Cordova.js提供网络请求、页面切换、数据存储、文件操作、设备操作等通用接口。
       * 更多<a href="http://cordova.apache.org/docs/en/2.6.0/index.html" target="_blank">Cordova</a>接口
       * @namespace app
     */
     window.app = window.app || {};
+
+
     /**
      * 页面事件
      * @namespace app.page
     */
     window.app.page= window.app.page|| {};
+
     /**
       * 返回上个页面，返回的时候可以在上个页面执行相关逻辑
       * @method app.back
@@ -28,6 +32,7 @@
         }
         Cordova.exec(null, null, "Page", "back", [ callback ]);
     }
+
     /**
       * 获取当前页面的地址
       * @method app.getCurrentUri
@@ -40,6 +45,7 @@
     app.getCurrentUri = function(callback) {
         Cordova.exec(callback, null, "Page", "getCurrentUri", []);
     }
+
     /**
       * 获取页面传递的参数
       * @method app.getPageParams
@@ -56,6 +62,7 @@
         }
         Cordova.exec(success, null, "Page", "getPageParams", []);
     }
+
     /**
       * 加载页面
       * @method app.load
@@ -97,6 +104,7 @@
         }
         Cordova.exec(null, null, "Page", "loadUrl", [ params ]);
     }
+
     /**
       * 加载页面
       * @method app.loadWithUrl
@@ -121,6 +129,7 @@
         };
         app.load(obj);
     }
+
     /**
       * 刷新当前页面
       * @method app.refresh
@@ -130,6 +139,7 @@
     app.refresh = function() {
         Cordova.exec(null, null, "Page", "refresh", []);
     }
+
     /**
       * 页面遇到脚本错误时候的事件,全局监控的事件,实际上对window.onerror()的封装
       * @event app.page.onError
@@ -145,6 +155,7 @@
     app.page.onError=function(msg,url,line){
       //todo 默认不实现，可在外面覆盖
     }
+
     /**
       * 页面dom结构加载完成后的事件，类似window.onload
       * @event app.page.onLoad
@@ -154,6 +165,7 @@
         }
     */
     app.page.onLoad=function(){}
+
     /**
       * 页面dom结构加载完成后的事件，类似zepto.js 的 $(function(){...})
       * @event app.page.onReady
@@ -161,8 +173,10 @@
       * app.page.onReady=function(){
       *     app.hint("页面dom结构加载完成");
       * }
+
     */
     app.page.onReady=function(){}
+
     /**
       * 发送网络请求
       * @method app.ajax
@@ -205,8 +219,10 @@
         var failCallback = function(result) {
             params.fail(app.utils.toJSON(result));
         }
+
         Cordova.exec(successCallback, failCallback, "HttpRequest", "ajax", [params.url, params.data, params.method, params.async, params.contentType, params.headers, params.timeout ]);
     }
+
     /**
       * 发送网络请求，请求wsdl(webservice)
       * @method app.ajaxWSDL
@@ -235,6 +251,7 @@
         params.timeout=params.timeout||10000;
         Cordova.exec(params.success, params.fail, "HttpRequest", "ajaxWSDL", [params.method,params.data,params.namespace,params.endpoint,params.async,params.timeout]);
     }
+
     /**
       * 发送GET请求
       * @method app.get
@@ -261,6 +278,7 @@
             "fail" : fail
         });
     }
+
     /**
       *  发送POST请求
       *  @method app.post
@@ -288,6 +306,7 @@
             "fail" : fail
         });
     }
+
     /**
       * 弹出提示框
       * @method app.alert
@@ -309,6 +328,7 @@
         }
         navigator.notification.alert(message, callback, title, buttonName);
     }
+
     /**
       * 弹出确认框
       * @method app.confirm
@@ -331,6 +351,7 @@
         buttonNames = buttonNames ||"确认,取消";
         navigator.notification.confirm(message, callback, title, buttonNames);
     }
+
     /**
       *  显示提示信息
       *  @method app.hint
@@ -344,11 +365,13 @@
         position = position || "bottom";
         Cordova.exec(null, null, "ExtendApp", "hint", [ message, position ]);
     }
+
     /**
       * 进度提醒，原生UI效果：加载中进度条
       * @namespace app.progress
      */
     window.app.progress = window.app.progress || {};
+
     /**
       *   显示进度条
       *   @method app.progress.start
@@ -362,6 +385,7 @@
         message = message || "";
         Cordova.exec(null, null, "ExtendApp", "progressStart",[ title, message ]);
     }
+
     /**
       *   停止进度条
       *   @method app.progress.stop
@@ -371,11 +395,13 @@
     app.progress.stop = function() {
         Cordova.exec(null, null, "ExtendApp", "progressStop", []);
     }
+
     /**
       * 持久化配置，存储持久化配置信息，key-value格式
       * @namespace app.setting
     */
     window.app.setting = window.app.setting || {};
+
     /**
       *   持久化保存配置信息
       *   @method app.setting.set
@@ -392,6 +418,7 @@
         }
         Cordova.exec(null, null, "Setting", "set", [ name, value]);
     }
+
     /**
       *   获取配置信息
       *   @method app.setting.get
@@ -414,6 +441,7 @@
         }
         Cordova.exec(callback, null, "Setting", "get", [ name, defaultValue]);
     }
+
     /**
       *   删除某配置信息
       *   @method app.setting.remove
@@ -428,6 +456,7 @@
         }
         Cordova.exec(null, null, "Setting", "remove", [ name]);
     }
+
     /**
       *   清除所有配置
       *   @method app.setting.clear
@@ -437,6 +466,9 @@
     app.setting.clear = function() {
         Cordova.exec(null, null, "Setting", "clear", []);
     }
+
+
+
     /**
       *   获取所有配置信息
       *   @method app.setting.getAll
@@ -452,6 +484,7 @@
         }
         Cordova.exec(success, null, "Setting", "load", []);
     }
+
     /**
       *   设置运行时全局变量
       *   @method app.setGlobalVariable
@@ -463,6 +496,7 @@
     app.setGlobalVariable = function(key, value) {
         Cordova.exec(null, null, "ExtendApp", "setVariable", [ key, value ]);
     }
+
     /**
       *   获取运行时全局变量
       *   @method app.getGlobalVariable
@@ -476,11 +510,14 @@
     app.getGlobalVariable = function(key, callback) {
         Cordova.exec(callback, null, "ExtendApp", "getVariable", [ key ]);
     }
+
+
     /**
       * 数据库，SQLite数据库操作，包括创建数据库，执行Sql脚本等
       * @namespace app.database
     */
     window.app.database = window.app.database || {};
+
     /**
       * 打开数据库，如果不存在会默认创建
       * @method app.database.open
@@ -497,6 +534,7 @@
         }
         return window.openDatabase(name, version, name, size);
     }
+
     /**
       *  执行sql: create,drop,insert,update,delete
       *  @method app.database.executeNonQuery
@@ -530,6 +568,7 @@
             }
         }, fail, success);
     }
+
     /**
       *  执行查询
       *  @method app.database.executeQuery
@@ -548,6 +587,7 @@
     */
     app.database.executeQuery = function(database, sql, success, fail) {
         success = success || function(tx, results) {
+
         }
         fail = fail || function(error) {
             app.alert(error);
@@ -556,11 +596,15 @@
             tx.executeSql(sql, [], success, fail);
         }, fail);
     }
+
+
+
     /**
       *   日期时间，原生UI效果：日期／时间选择控件
       *   @namespace app.dateTimePicker
     */
     window.app.dateTimePicker = window.app.dateTimePicker || {};
+
     /**
       *   选择日期
       *   @method app.dateTimePicker.selectDate
@@ -589,6 +633,7 @@
             app.dateTimePicker.wheelSelectDate(callback, defaultDate, format);
         }
     };
+
     /**
       *   选择时间
       *   @method app.dateTimePicker.selectTime
@@ -620,6 +665,7 @@
             app.dateTimePicker.wheelSelectTime(callback, defaultTime, format, is24Hours);
         }
     };
+
     /**
       *   选择日期-滚轮
       *   @method app.dateTimePicker.wheelSelectDate
@@ -659,6 +705,7 @@
             Cordova.exec(success, null, "WheelSelectPlugin", "date", [ defaultDate,format, range ]);
         }
     }
+
     /**
       *   选择时间-滚轮
       *   @method app.dateTimePicker.wheelSelectTime
@@ -685,11 +732,15 @@
         }
         Cordova.exec(success, null, "WheelSelectPlugin", "time", [ defaultTime,format, is24Hours ]);
     }
+
+
+
     /**
     *  短信电话，发短信，打电话，获取sim卡信息等
     *  @namespace app.phone
     */
     window.app.phone = window.app.phone || {};
+
     /**
     *  发短信
     *  @method app.phone.sendSMS
@@ -702,6 +753,7 @@
     app.phone.sendSMS = function(phone, message) {
         Cordova.exec(null, null, "PhonePlugin", "sms", [ phone, message ]);
     }
+
     /**
     *  打电话
     *  @method app.phone.dial
@@ -712,6 +764,7 @@
     app.phone.dial = function(phone) {
         Cordova.exec(null, null, "PhonePlugin", "dial", [ phone ]);
     }
+
     /**
      *  获取sim卡信息
      *  deviceId, phoneNumber, operatorName,
@@ -728,11 +781,15 @@
     app.getSimInfo = function(callback) {
         Cordova.exec(callback, null, "ExtendApp", "getSimInfo", []);
     }
+
+
+
     /**
     *  扫码，二维码／条形码扫描
     *  @namespace app.barcode
     */
     window.app.barcode = window.app.barcode || {};
+
     /**
       *   该接口用于调用二维码扫描
       *   @method app.barcode.scan
@@ -748,6 +805,10 @@
     app.barcode.scan=function(success,fail){
         Cordova.exec(success, fail, "BarcodeScanner", "scan", []);
     }
+
+
+
+
     /**
       * 退出程序（<font color="red">android支持退出app，ios下通常不退出，在iOS尽量不要用此接口,在Link中可以通过此接口回到Link应用</font>）
       * @method app.exit
@@ -757,6 +818,7 @@
     app.exit = function() {
         Cordova.exec(null, null, "ExtendApp", "exit", []);
     }
+
     /**
     *   检测是否存在某个app
     *   android:传入包名 eg: bingo.touch.debugger
@@ -783,6 +845,7 @@
         };
         Cordova.exec(callback, null, "ExtendApp", "isExistApp", [ appId ]);
     }
+
     /**
      *  执行第三方的应用，如果是传入http的远程地址，将会调用系统自带的浏览器打开远程页面
      *  android: package name eg: bingo.touch.debugger
@@ -802,6 +865,7 @@
         }
         Cordova.exec(null, null, "ExtendApp", "runApp", [ appId, data ]);
     }
+
     /**
      *  获取app相关信息
      *  res包含三个属性，id:程序的id号、versionCode:版本编码、versionName：版本名称
@@ -818,6 +882,7 @@
         }
         Cordova.exec(success, null, "ExtendApp", "getInfo", []);
     }
+
     /**
      *  安装应用（<font color="red">仅android平台适用,iOS平台是通过请求plist的方式安装</font>）
      *  @method app.install
@@ -840,6 +905,7 @@
             app.alert("iOS platform do not support this api!");
         }
     }
+
     /**
      *  获取app安装后的相关目录
      *  android和ios的目录结构不同
@@ -863,6 +929,8 @@
         }
         Cordova.exec(success, null, "ExtendApp", "getAppDirectoryEntry",[]);
     }
+
+
     /**
      *  打开文件:如office文件,apk等，将调用系统的程序来打开文件
      *  @method app.openFile
@@ -884,6 +952,7 @@
         };
         Cordova.exec(success, fail, "ExtendApp", "openFile",[ filePath, mime ]);
     }
+
     /**
      *  控制屏幕旋转
      *  @method app.rotation
@@ -896,6 +965,8 @@
     app.rotation = function(type) {
         Cordova.exec(null, null, "RotationPlugin", "setRotation", [ type ]);
     }
+
+
     /**
     *  获取当前坐标
     *  @method app.getLocation
@@ -908,6 +979,7 @@
         }
         Cordova.exec(callbackSuccess, fail, "LocationPlugin", "location", []);
     }
+
     /**
     *   获取设备的尺寸
     *   height:屏幕的高度、width:屏幕的宽度
@@ -924,6 +996,7 @@
         }
         Cordova.exec(success, null, "ExtendApp", "getSize", []);
     }
+
     /**
     * 设备震动提醒
     * @method app.vibrate
@@ -932,6 +1005,7 @@
     app.vibrate=function(mills){
         navigator.notification.vibrate(mills);
     }
+
     /**
     * 打开本地通讯录选择通讯录信息
     * @method app.openContactSelector
@@ -940,10 +1014,16 @@
     app.openContactSelector=function(callback){
          Cordova.exec(callback, null, "ContractEx", "getContracts", []);
     }
+
+
+
+
+
     /**
      *  @namespace app.utils
     */
     window.app.utils = window.utils || {};
+
     /**
      *  将json字符串转成json对象
      *  @method app.utils.toJSON
@@ -953,6 +1033,7 @@
     app.utils.toJSON = function(jsonStr) {
         return typeof (jsonStr) == "string"? eval('(' + jsonStr + ')') : jsonStr;
     }
+
     /**
      *  判断是否在PC上
      *  @method app.utils.isPC
@@ -967,11 +1048,18 @@
         }
         return flag;
     }
+
+
+
+
+
+
     /**
      *  滚轮
      *  @namespace app.wheelSelect
      */
     window.app.wheelSelect = window.app.wheelSelect || {};
+
     /**
       * 单选-滚轮
       * @method app.wheelSelect.oneSelect
@@ -1002,11 +1090,18 @@
         Cordova.exec(success, null, "WheelSelectPlugin", "oneSelect", [ data,
                 selectedKey, title, buttons ]);
     }
+
+
+
+
+
+
     /**
       * 本地通知
       * @namespace app.notification
     */
     window.app.notification = window.app.notification || {};
+
     /**
       * 该接口用于发起本地通知
       * @method app.notification.notify
@@ -1042,11 +1137,18 @@
         params.clickActionParams = params.clickActionParams || {};
         Cordova.exec(null, null, "LocalNotification", "notify", [ params.title,params.body,params.isAutoDisappear,params.disappearTime,params.clickAction,params.clickActionParams]);
     }
+
+
+
+
+
+
     /**
       * 运行时定时任务接口
       * @namespace app.timetask
     */
     window.app.timetask=window.app.timetask||{}
+
     /**
       * 开启一个定时任务
       * @method app.timetask.start
@@ -1065,6 +1167,7 @@
         params.maxCount=params.maxCount||10000;//默认执行1w次
         params.loopTime=params.loopTime||1000; //默认1s 执行一次
         params.isImmediate=params.isImmediate||false; //是否立刻执行
+
         if(params.id==""){
             app.alert("任务id不能为空!");
             return;
@@ -1078,6 +1181,7 @@
         }
         Cordova.exec(nativeCallback, null, "TimeTask", "taskStart", [params]);
     }
+
     /**
       * 结束一个定时任务
       * @method app.timetask.stop
@@ -1095,11 +1199,16 @@
         }
         Cordova.exec(nativeCallback, null, "TimeTask", "taskStop", [id]);
     }
+
+
+
+
     /***
       * 社会化分享插件
       * @class shareplugin
     ***/
     window.app.shareplugin=window.app.shareplugin||{};
+
     /*
         该接口用于社会化分享
         @method app.shareplugin.share
@@ -1126,12 +1235,22 @@
     app.shareplugin.share=function(params){
         Cordova.exec(null, null, "ShareSDKPlugin", "share", [params.title,params.titleUrl,params.text,params.url,params.comment,params.siteName,params.siteUrl ]);
     }
+
+
+
+
 })(window);
 
+//页面完整加载完成
 window.onload=function(){
     document.addEventListener("deviceready", function() {
+
+        //声明页面事件
         app.page.onLoad();
+
     }, false);
 }();
+
+
 
 

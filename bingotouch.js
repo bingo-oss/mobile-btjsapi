@@ -210,7 +210,7 @@
         if (typeof (params.async) == "undefined") {
             params.async = true;
         }
-        params.contentType = params.contentType || "";
+        params.contentType = params.contentType || "application/x-www-form-urlencoded";
         params.headers = params.headers || {};
         params.timeout = params.timeout || 10000;
         var successCallback = function(result) {

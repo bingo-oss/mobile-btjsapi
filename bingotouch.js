@@ -950,6 +950,11 @@
         fail = fail || function(result) {
             app.hint("没有找到合适的程序打开该文件");
         };
+
+        if (window.devicePlatform == "iOS") {
+            //ios无需带上file
+            filePath = filePath.replace("file://","");
+        }
         Cordova.exec(success, fail, "ExtendApp", "openFile",[ filePath, mime ]);
     }
 

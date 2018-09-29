@@ -1396,9 +1396,11 @@
     /**
      * 获取配置的服务器地址
      * @method app.link.getServeConfigs
+     * @param  {function} success 成功回调函数
+     * @param  {function} fail    失败回调函数
      */
-    getServeConfigs = function () {
-        Cordova.exec(null, null, "LinkPlugin", "getServeConfigs", []);
+    app.link.getServeConfigs = function (success, fail) {
+        Cordova.exec(success, fail, "LinkPlugin", "getServeConfigs", []);
     }
 
 

@@ -1391,6 +1391,14 @@
            key:"openOnlineServicer"
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
+    },
+
+    /**
+     * 获取配置的服务器地址
+     * @method app.link.getServeConfigs
+     */
+    getServeConfigs = function () {
+        Cordova.exec(null, null, "LinkPlugin", "getServeConfigs", []);
     }
 
 

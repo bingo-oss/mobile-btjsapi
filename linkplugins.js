@@ -1396,10 +1396,34 @@
     /**
      * 获取配置的服务器地址
      * @method app.link.getServerConfigs
+     * @param {function} success 成功回调函数，返回json对象，所有的配置地址
+     * @param {function} fail 失败回调函数，返回失败错误信息
      */
-    getServerConfigs = function (success, fail) {
+    app.link.getServerConfigs = function (success, fail) {
         Cordova.exec(success, fail, "LinkPlugin", "getServerConfigs", []);
     }
+
+
+    /**
+     * 浏览多媒体资源，包括图片、视频(android)
+     * @method app.link.browseMultiMedia
+     * @param {object} params 参数
+     * @param {array} params.data 媒体数据对象数组，数据对象{url:"",thumbUrl:"",fileSize:100,fileType:1} fileType: 1图片2视频
+     * @param {integer} params.position 初始化位置，默认是0
+     * @param {bool} params.isVideoMuteOnFirstPlay 是否静音播放点击进来的视频，默认 false
+     * @param {bool} params.isOptionEnable  是否允许进行保存网盘，分享聊天等操作，默认 true
+     */
+    app.link.browseMultiMedia = function (params){
+        params = $.extend({
+            data:[],
+            position:0,
+            isVideoMuteOnFirstPlay:false,
+            isOptionEnable:true
+        }, params);
+
+        Cordova.exec(null,null,"LinkPlugin","browseMultiMedia", [params]);
+    }
+
 
 
 })(window);

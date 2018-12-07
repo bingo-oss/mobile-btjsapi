@@ -151,7 +151,7 @@
       *     app.alert(result);
       * },function(){} ,'请选择用户','1');
     */
-    app.link.startContactSingleSetor = function (successCallback, failCallback,title, dataType,extraParams) {
+    app.link.startContactSingleSelector = function (successCallback, failCallback,title, dataType,extraParams) {
          extraParams = $.extend({
             isIncludeDisableUser:false
         }, extraParams);
@@ -772,6 +772,7 @@
     /**
         打开应用详情页面
         @method app.link.openAppCard
+        @deprecated
         @param {String} appCode 应用编码
         @example
             app.link.openAppCard("com.bingo.touch");

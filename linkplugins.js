@@ -1083,7 +1083,7 @@
         @method app.link.updateTabBadge
         @param badgeValue {String} 角标的内容，这个内容直接更新到tab里面（当不传此值时去除角标）
         @example
-            app.link.updateTabBadge(12);
+            app.link.updateTabBadge('12');
     */
     app.link.updateTabBadge = function (badgeValue) {
         Cordova.exec(null,null,"LinkPlugin", "updateTabBadge", [badgeValue]);

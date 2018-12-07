@@ -213,11 +213,11 @@
 
 
     /**
-        打开部门列表
-        @method app.link.openOrgList
-        @param orgId {String} 部门id（可不传,默认打开当前所在部门）
-        @example
-            app.link.openOrgList();
+      * 打开部门列表
+      * @method app.link.openOrgList
+      * @param orgId {String} 部门id（可不传,默认打开当前所在部门）
+      * @example
+      *     app.link.openOrgList();
      */
     app.link.openOrgList = function (orgId) {
         var params={
@@ -229,11 +229,11 @@
     }
 
     /**
-        查看部门名片页
-        @method app.link.openOrgCard
-        @param orgId {String} 部门id
-        @example
-            app.link.openOrgCard('02af68fb-dc53-4411-b6c8-d6480cce2234');
+      * 查看部门名片页
+      * @method app.link.openOrgCard
+      * @param orgId {String} 部门id
+      * @example
+      *     app.link.openOrgCard('02af68fb-dc53-4411-b6c8-d6480cce2234');
      */
     app.link.openOrgCard = function (orgId) {
         var params={
@@ -359,11 +359,11 @@
 
 
     /**
-        查看服务号名片页
-        @method app.link.openServiceAccountCard
-        @param accountId {String} 服务号id
-        @example
-            app.link.openServiceAccountCard("43b80351-2c0a-4e84-a3d0-43eb7d35bc00");
+      * 查看服务号名片页
+      * @method app.link.openServiceAccountCard
+      * @param accountId {String} 服务号id
+      * @example
+      *     app.link.openServiceAccountCard("43b80351-2c0a-4e84-a3d0-43eb7d35bc00");
      */
     app.link.openServiceAccountCard = function (accountId) {
         var params={
@@ -375,10 +375,10 @@
     }
 
     /**
-        查看已关注服务号列表
-        @method app.link.openServiceAccountList
-        @example
-            app.link.openServiceAccountList();
+      * 查看已关注服务号列表
+      * @method app.link.openServiceAccountList
+      * @example
+      *     app.link.openServiceAccountList();
      */
     app.link.openServiceAccountList = function () {
         var params={
@@ -426,11 +426,12 @@
 
 
     /**
-        打开消息中心页面
-        @method app.link.openMsgCenter
-        @example
-            app.link.openMsgCenter();
-     */
+      * 打开消息中心页面
+      * @method app.link.openMsgCenter
+      * @param isShowService {Boolean} 废弃不用
+      * @example
+        app.link.openMsgCenter();
+      */
     app.link.openMsgCenter = function (isShowService) {
         var params={
             code:"OpenBuiltIn",
@@ -676,7 +677,7 @@
     /**
         打开动态详情
         @method app.link.openMicroblogDetail
-        @param {String} 动态Id
+        @param {String} blogId - 动态Id
         @example
             app.link.openMicroblogDetail('0683ecc7-560f-4b7e-92a3-6ce9d690e5be');//这里填写你的动态id
     */
@@ -690,16 +691,15 @@
     }
 
     /**
-        打开我的动态
-        @method app.link.openMyMicroblog
-        @param
-        @example
-            app.link.openMyMicroblog();
+      * 打开我的动态
+      * @method app.link.openMyMicroblog
+      * @example
+      *     app.link.openMyMicroblog();
     */
     app.link.openMyMicroblog=function(){
         var params={
             code:"OpenBuiltIn",
-            key:"MyMicroBlog"
+            key:"MyBlogCard"
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
@@ -835,10 +835,10 @@
 
 
     /**
-        打开个人信息修改页面
-        @method app.link.openPersonEdit
-        @example
-            app.link.openPersonEdit();
+      * 打开个人信息修改页面
+      * @method app.link.openPersonEdit
+      * @example
+      *     app.link.openPersonEdit();
     */
     app.link.openPersonEdit=function(){
         var params={
@@ -849,10 +849,10 @@
     }
 
     /**
-        打开个人设置页面
-        @method app.link.openSetting
-        @example
-            app.link.openSetting();
+      * 打开个人设置页面
+      * @method app.link.openSetting
+      * @example
+      *     app.link.openSetting();
     */
     app.link.openSetting=function(){
         var params={
@@ -892,10 +892,10 @@
     }
 
     /**
-        打开设置手势锁屏页面
-        @method app.link.openStGestureLock
-        @example
-            app.link.openStGestureLock();
+      * 打开设置手势锁屏页面
+      * @method app.link.openStGestureLock
+      * @example
+      *     app.link.openStGestureLock();
     */
     app.link.openStGestureLock=function(){
        var params={
@@ -921,10 +921,10 @@
     }
 
     /**
-        打开设置字体大小页面
-        @method app.link.openStFont
-        @example
-            app.link.openStFont();
+      * 打开设置字体大小页面
+      * @method app.link.openStFont
+      * @example
+      *     app.link.openStFont();
     */
     app.link.openStFont=function(){
        var params={
@@ -935,10 +935,10 @@
     }
 
     /**
-        打开设备管理页面
-        @method app.link.openStDevice
-        @example
-            app.link.openStDevice();
+      * 打开设备管理页面
+      * @method app.link.openStDevice
+      * @example
+      *     app.link.openStDevice();
     */
     app.link.openStDevice=function(){
        var params={
@@ -963,10 +963,10 @@
     }
 
     /**
-        打开清除缓存页面
-        @method app.link.openStCleanCache
-        @example
-            app.link.openStCleanCache();
+      * 打开清除缓存页面
+      * @method app.link.openStCleanCache
+      * @example
+      *     app.link.openStCleanCache();
     */
     app.link.openStCleanCache=function(){
        var params={
@@ -991,10 +991,10 @@
     }
 
     /**
-        打开邀请好友页面
-        @method app.link.openStInvite
-        @example
-            app.link.openStInvite();
+      * 打开邀请好友页面
+      * @method app.link.openStInvite
+      * @example
+      *     app.link.openStInvite();
     */
     app.link.openStInvite=function(){
        var params={
@@ -1065,10 +1065,10 @@
     }
 
     /**
-        打开我的工作页面
-        @method app.link.openProcessMywork
-        @example
-            app.link.openProcessMywork();
+      * 打开我的工作页面
+      * @method app.link.openProcessMywork
+      * @example
+      *     app.link.openProcessMywork();
     */
     app.link.openProcessMywork=function(){
         var params={
@@ -1243,9 +1243,11 @@
 
 
     /**
-    打开pdf文件：url支持本地以及远程的地址
-    @method app.link.openPdfBroswer
-    @static
+      * 打开pdf文件：url支持本地以及远程的地址
+      * @method app.link.openPdfBroswer
+      * @param title {Sting} 标题
+      * @param url {Sting} url支持本地以及远程的地址
+      * @static
     */
     app.link.openPdfBroswer=function(title,url){
         var params={
@@ -1391,7 +1393,7 @@
     app.link.openOnlineServicer = function(){
        var params={
            code:"OpenBuiltIn",
-           key:"openOnlineServicer"
+           key:"OnlineServicer"
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     },

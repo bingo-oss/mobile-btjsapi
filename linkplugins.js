@@ -43,12 +43,12 @@
     /**
       * 获取Link指定的用户(userId)信息
       * @method app.link.getUserInfo
-      * @param callback {function} 成功回调函数，返回json对象
-      * @param failCallback {function} 失败回调函数，返回错误字符串
+      * @param success {function} 成功回调函数，返回json对象
+      * @param fail {function} 失败回调函数，返回错误字符串
       * @param userId {string} 指定用户userId
       * @example
       *     app.link.getUserInfo(function(result){
-      *         app.alert(result.userName);
+      *         app.alert(result);
       *     },
       *     function(error){
       *         app.alert(error);
@@ -56,11 +56,11 @@
       *     'ebdfe3b1-ed9c-425b-aac3-aa6c61d05d0e'
       *     );
     */
-    app.link.getUserInfo = function (callback, failCallback, userId) {
+    app.link.getUserInfo = function (success, fail, userId) {
             var successCallback = function (result) {
-            callback(app.utils.toJSON(result));
+            success(app.utils.toJSON(result));
         };
-        Cordova.exec(successCallback, failCallback, "LinkPlugin", "getUserInfo", [userId]);
+        Cordova.exec(successCallback, fail, "LinkPlugin", "getUserInfo", [userId]);
     }
 
     /**
@@ -443,8 +443,8 @@
     /**
       * 获取未读消息总数
       * @method app.link.getUnreadMessageCount
-      * @param successCallback {Function} 成功回调，返回数字
-      * @param failCallback {Function} 失败回调,返回失败信息
+      * @param success {Function} 成功回调，返回数字
+      * @param fail {Function} 失败回调,返回失败信息
       * @example
       * app.link.getUnreadMessageCount(function(result){
       *      app.alert(result);
@@ -452,23 +452,23 @@
       *      app.alert(error);
       * });
     */
-    app.link.getUnreadMessageCount = function (successCallback, failCallback) {
-        Cordova.exec(successCallback, failCallback,"LinkPlugin", "getUnreadMessageCount", []);
+    app.link.getUnreadMessageCount = function (success, fail) {
+        Cordova.exec(success, fail,"LinkPlugin", "getUnreadMessageCount", []);
     }
 
     /**
       * 获取指定帐号id的未读消息数
       * @method app.link.getUnreadMessageCountById
-      * @param successCallback {Function} 成功回调函数，返回未读消息数
+      * @param success {Function} 成功回调函数，返回未读消息数
       * @param talkWithId {String} 这里的帐号包括：用户的id，服务号的id，部门的id，群组的id
       * @example
       *  app.link.getUnreadMessageCountById(function(result){
       *      alert(result);
       *  }, 'ebdfe3b1-ed9c-425b-aac3-aa6c61d05d0e');
     */
-    app.link.getUnreadMessageCountById=function(successCallback,talkWithId){
+    app.link.getUnreadMessageCountById=function(success,talkWithId){
         var callback=function(result){
-            successCallback(result,talkWithId);
+            success(result,talkWithId);
         }
         Cordova.exec(callback,null,"LinkPlugin","getUnreadMessageCountById",[talkWithId]);
     }
@@ -661,6 +661,7 @@
     /**
         打开动态广场
         @method app.link.openBlogSquare
+        @deprecated
         @example
             app.link.openBlogSquare();
     */
@@ -740,6 +741,7 @@
     /**
         打开应用桌面
         @method app.link.openAppDesktop
+        @deprecated
         @param
         @example
             app.link.openAppDesktop();
@@ -755,6 +757,7 @@
     /**
         打开应用市场
         @method app.link.openAppMarket
+        @deprecated
         @example
             app.link.openAppMarket();
     */
@@ -1190,14 +1193,13 @@
     }
 
     /**
-    打开发现服务
+    打开应用中心（旧版叫发现服务）
     @method app.link.openDiscoveryService
     */
     app.link.openDiscoveryService=function(){
          var params={
            code:"OpenBuiltIn",
            key:"DcService"
-
        };
        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
@@ -1229,9 +1231,10 @@
     }
 
     /**
-    打开BT容器(轻应用容器)
+    使用BT容器加载页面
     @method app.link.openBtBroswer
     @static
+    @param {string} url 页面地址
     */
     app.link.openBtBroswer=function(url){
         var params="[BingoTouch]\nurl="+url;
@@ -1313,7 +1316,7 @@
      * @param  {Function} callback 回调函数,返回 en, zh-cn
      */
     app.link.getLanguage = function(callback){
-        Cordova.exec(success,fail,"LinkPlugin","getLanguage",[]);
+        Cordova.exec(callback,null,"LinkPlugin","getLanguage",[]);
     }
 
 

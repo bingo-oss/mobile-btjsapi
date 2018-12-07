@@ -779,7 +779,10 @@
      *  });
     */
     app.getSimInfo = function(callback) {
-        Cordova.exec(callback, null, "ExtendApp", "getSimInfo", []);
+        var success = function(res){
+            callback(app.utils.toJSON(res));
+        }
+        Cordova.exec(success, null, "ExtendApp", "getSimInfo", []);
     }
 
 

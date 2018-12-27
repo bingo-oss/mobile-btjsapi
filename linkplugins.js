@@ -540,6 +540,7 @@
      *     privateType {Int}  私密类型 ， 0 群组，1 部门， 2 个人 ， 3 项目  ， 4公开 （默认类型）<br/>
      *     privateInstanceID {String}  私密对象id<br/>
      *     privateName {String} 私密对象名称<br/>
+     *     labelIds {string} 指定标签Id,多个使用逗号隔开
      *     images {Array}  动态图片 （相册图片地址， 建议到动态发表界面再选择图片，这样更加方便）
      * @example
      * app.link.publishMicroblog(function(res){

@@ -629,15 +629,15 @@
     /**
      打开某服务号动态主页
      @method app.link.openServiceAccountMicroblog
-     @param accountName {String} 服务号名称
+     @param account {String} 服务号ID, 接口底层原来传服务号名称，现在改成服务号ID
      @example
-     app.link.openServiceAccountMicroblog('系统通知');
+         app.link.openServiceAccountMicroblog('accountId');
      */
-    app.link.openServiceAccountMicroblog=function(accountName){
+    app.link.openServiceAccountMicroblog=function(account){
         var params={
             code:"OpenBuiltIn",
             key:"BlogCard",
-            accountName : accountName
+            accountId : account，
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }

@@ -770,7 +770,7 @@
      *  deviceId, phoneNumber, operatorName,
      *  simCountryIso, simSerialNumber, subscriberId, networkType,
      *  deviceSoftwareVersion, voiceMailAlphaTag, voiceMailNumber等
-     *  @method app.phone.getSimInfo
+     *  @method app.getSimInfo
      *  @static
      *  @param callback {Function} 回调函数，返回json对象
      *  @example
@@ -785,6 +785,15 @@
         Cordova.exec(success, null, "ExtendApp", "getSimInfo", []);
     }
 
+    /**
+     * 获取设备唯一标识，该标识是结合多种硬件唯一标识算出来的
+     * @method app.getDeviceId
+     * @static
+     * @param callback {Function} 回调函数，返回json对象
+     */
+    app.getDeviceId = function(callback){
+        Cordova.exec(callback, null, "ExtendApp", "getDeviceId", []);
+    }
 
 
     /**

@@ -815,7 +815,7 @@
       *   });
     */
     app.barcode.scan=function(success,fail){
-        Cordova.exec(success, fail, "BarcodeScanner", "scan", []);
+        Cordova.exec(success, fail, "BarcodeScanner", "nativeScan", []);
     }
 
 

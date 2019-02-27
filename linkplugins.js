@@ -1207,13 +1207,19 @@
     /**
      * 打开扫一扫
      * @method app.link.scanCode
+     * @param {function} success 成功回调
+     * @param {function} fail 失败回调
+     * @param {object} options 配置参数
+     * @param {bool} options.isHandleResult true 则使用Link的默认行为，false（默认) 则通过回调返回扫描结果
      */
-    app.link.scanCode=function(){
-        var params={
-            code:"OpenBuiltIn",
-            key:"ScanCode"
-        };
-        Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
+    app.link.scanCode=function(success, fail, options){
+        Cordova.exec(success, fail, "LinkPlugin", "scanCode", [options]);
+        // 之前没有回调的做法，弃用
+        // var params={
+        //     code:"OpenBuiltIn",
+        //     key:"ScanCode"
+        // };
+        // Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }
 
     /**

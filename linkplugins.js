@@ -1148,8 +1148,9 @@
      * 分享到聊天界面(个人/群组)
      * @method app.link.shareToMessage
      * @param params{Object}
-     *     <br/>title: {string} 标题
-     *     <br/>content: {string} 分享内容摘要
+     *     <br/>title: {string} 分享标题
+     *     <br/>brief: {string} 分享摘要
+     *     <br/>content: {string} type为action时候，传入具体指令,例如:[OpenApp]\nappCode=xxx\nappUrl=xxx
      *     <br/>icon: {string} 分享的图标地址，支持远程地址，或本地图片
      *     <br/>type: {string} WEBSITE,PICTURE,ACTION
      */
@@ -1159,6 +1160,7 @@
         params.content=params.content||"";
         params.title=params.title||"";
         params.icon=params.icon||"";
+        params.brief=params.brief||"";
         Cordova.exec(success, fail, "LinkPlugin", "shareToMessage", [params]);
     }
 

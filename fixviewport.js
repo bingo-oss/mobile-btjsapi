@@ -8,9 +8,14 @@ function fixViewPortJS(){
     }
     var fix_viewport = "width=device-width,initial-scale="+scale+",minimum-scale="+scale+",maximum-scale=1.0,user-scalable=no";
     var viewport = $("meta[name='viewport']").attr("content").trim();
+    if(viewport.indexOf('initial-scale=1')>-1){
+        return;
+    }
+    var isBui = (typeof bui != 'undefined');
+    var isCordova = (cordova!= null);
 
     function setViewPort(){
-        if(typeof bui == 'undefined' && cordova){
+        if( !isBui && isCordova){
             if ($("meta[name='viewport']").length > 0) {
                 $("meta[name='viewport']").attr("content", fix_viewport);
             }else{
@@ -24,7 +29,7 @@ function fixViewPortJS(){
     }
     setViewPort();
     setTimeout(function(){
-        if(viewport!=fix_viewport && typeof bui == 'undefined' && typeof app.ajax!='undefined'){
+        if(viewport!=fix_viewport && !isBui && typeof app.ajax!='undefined'){
             fixViewPortJS();
         }
     },50);

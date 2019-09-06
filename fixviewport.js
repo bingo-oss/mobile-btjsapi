@@ -6,13 +6,19 @@ function fixViewPortJS(){
             scale="0.5";
         }
     }
-    var fix_viewport = "width=device-width,initial-scale="+scale+",minimum-scale="+scale+",maximum-scale=1.0,user-scalable=no";
-    var viewport = $("meta[name='viewport']").attr("content").trim();
-    if(viewport.indexOf('initial-scale=1')>-1){
-        return;
-    }
     var isBui = (typeof bui != 'undefined');
     var isCordova = (cordova!= null);
+
+    var fix_viewport = "width=device-width,initial-scale="+scale+",minimum-scale="+scale+",maximum-scale=1.0,user-scalable=no";
+    var viewport = $("meta[name='viewport']").attr("content").trim();
+    
+    if( !isBui && isCordova){
+        // todo
+    } else {
+        if(viewport.indexOf('initial-scale=1')>-1){
+            return;
+        }
+    }
 
     function setViewPort(){
         if( !isBui && isCordova){
@@ -34,4 +40,7 @@ function fixViewPortJS(){
         }
     },50);
 }
-fixViewPortJS();
+
+if(typeof window._needFixviewport == 'undefined' || window._needFixviewport == true) {
+    fixViewPortJS();
+}

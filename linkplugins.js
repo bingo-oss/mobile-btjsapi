@@ -1303,8 +1303,8 @@
      * @param {function} fail    [失败回调]
      */
     app.link.imagePicker = function(success,fail,pathArr){
-        var type = 1;
-        Cordova.exec(success,fail,"LinkPlugin","selectResourceFiles",[type,pathArr]);
+        pathArr = pathArr || [];
+        Cordova.exec(success,fail,"LinkPlugin","selectResourceFiles",[1,pathArr]);
     }
 
 

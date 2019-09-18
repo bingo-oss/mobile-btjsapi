@@ -795,6 +795,21 @@
         Cordova.exec(callback, null, "ExtendApp", "getDeviceId", []);
     }
 
+    /**
+     * 获取设备meid
+     * @param callback {Function} 回调函数，返回字符串
+     */
+    app.getMeid = function(callback){
+        Cordova.exec(callback, null, "ExtendApp", "getMeid", []);
+    }
+
+    /**
+     * 获取设备imsi
+     * @param callback {Function} 回调函数，返回字符串
+     */
+    app.getImsi = function(callback){
+        Cordova.exec(callback, null, "ExtendApp", "getImsi", []);
+    }
 
     /**
     *  扫码，二维码／条形码扫描

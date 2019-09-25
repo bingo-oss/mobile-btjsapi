@@ -637,7 +637,7 @@
         var params={
             code:"OpenBuiltIn",
             key:"BlogCard",
-            accountId : account，
+            accountId : account
         };
         Cordova.exec(null, null, "LinkPlugin", "launchLinkServiceWithDictionary", [params]);
     }

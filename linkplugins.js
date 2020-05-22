@@ -41,6 +41,15 @@
     }
 
     /**
+     * 刷新AccessToken
+     * @method app.link.refreshToken
+     * @param callback {function} 回调函数,返回新的token
+     */
+    app.link.refreshToken = function(callback) {
+        Cordova.exec(callback, null, "LinkPlugin", "refreshToken", []);
+    }
+
+    /**
      * 获取Link指定的用户(userId)信息
      * @method app.link.getUserInfo
      * @param success {function} 成功回调函数，返回json对象
